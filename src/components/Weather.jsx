@@ -1,0 +1,57 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getPost } from "../api/ApiData";
+import ShowData from "./ShowData";
+import { ErrorFound } from "./ErrorFound";
+
+const Weather = () => {
+  const [value, setValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      setValue(inputValue);
+      setInputValue("");
+    } else {
+      alert("Please enter a city name");
+    }
+    // setValue("");
+  };
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["data", value],
+    queryFn: () => getPost(value),
+    enabled: !!value,
+  });
+
+  if (data) {
+    console.log(data);
+  }
+
+  return (
+    <div className="main-box ">
+      <form className="search-part" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="input-city ps-2"
+          placeholder="Enter City Name"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button type="submit" className="bg-black border-0">
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+
+      {isLoading && (
+        <p className="container text-center mt-5">
+          <b>Loading...</b>
+        </p>
+      )}
+      {error && <ErrorFound error={error} />}
+      {data && <ShowData data={data} />}
+    </div>
+  );
+};
+export default Weather;
