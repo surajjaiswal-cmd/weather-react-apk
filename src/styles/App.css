@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url(./src/images/bgimg.jpg);
+    background-image: url(./public/bgimg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
