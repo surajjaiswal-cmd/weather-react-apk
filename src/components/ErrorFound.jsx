@@ -9,6 +9,9 @@ export const ErrorFound = ({ error }) => {
       <p className="text-center mt-4 ">
         <b>{`${error}`}</b>
       </p>
+      <p>
+        <b>Enter A Valid City Namev</b>
+      </p>
     </div>
   );
 };

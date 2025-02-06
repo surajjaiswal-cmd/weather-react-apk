@@ -5,24 +5,25 @@ import ShowData from "./ShowData";
 import { ErrorFound } from "./ErrorFound";
 
 const Weather = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("indore");
   const [inputValue, setInputValue] = useState("");
+  const [done, setDone] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue.trim()) {
+      setDone(true);
       setValue(inputValue);
       setInputValue("");
     } else {
       alert("Please enter a city name");
     }
-    // setValue("");
   };
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["data", value],
     queryFn: () => getPost(value),
-    enabled: !!value,
+    enabled: done,
   });
 
   if (data) {
@@ -37,7 +38,10 @@ const Weather = () => {
           className="input-city ps-2"
           placeholder="Enter City Name"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => {
+            setDone(false);
+            setInputValue(e.target.value);
+          }}
         />
         <button type="submit" className="bg-black border-0">
           <i className="fa-solid fa-magnifying-glass"></i>
