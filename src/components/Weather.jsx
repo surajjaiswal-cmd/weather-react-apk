@@ -24,38 +24,46 @@ const Weather = () => {
     queryKey: ["data", value],
     queryFn: () => getPost(value),
     enabled: done,
+    staleTime: 3600000,
+    cacheTime: 3600000,
   });
+  
 
   if (data) {
     console.log(data);
   }
 
   return (
-    <div className="main-box ">
-      <form className="search-part" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="input-city ps-2"
-          placeholder="Enter City Name"
-          value={inputValue}
-          onChange={(e) => {
-            setDone(false);
-            setInputValue(e.target.value);
-          }}
-        />
-        <button type="submit" className="bg-black border-0">
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
+    <>
+      <div className="main-box ">
+        <form className="search-part" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="input-city ps-2"
+            placeholder="Enter City Name"
+            value={inputValue}
+            onChange={(e) => {
+              setDone(false);
+              setInputValue(e.target.value);
+            }}
+          />
+          <button type="submit" className="bg-black border-0">
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
 
-      {isLoading && (
-        <p className="container text-center mt-5">
-          <b>Loading...</b>
-        </p>
-      )}
-      {error && <ErrorFound error={error} />}
-      {data && <ShowData data={data} />}
-    </div>
+        {isLoading && (
+          <p className="container text-center mt-5">
+            <b>Loading...</b>
+          </p>
+        )}
+        {error && <ErrorFound error={error} />}
+        {data && <ShowData data={data} />}
+      </div>
+      <div className="footer">
+        This Weather APK Made by surajjaiswal0963@gmail.com
+      </div>
+    </>
   );
 };
 export default Weather;

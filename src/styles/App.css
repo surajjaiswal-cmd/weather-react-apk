@@ -8,10 +8,12 @@ body {
     background-image: url(/bgimg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 #main-outer-box {
     display: flex;
+
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -116,6 +118,14 @@ body {
     font-weight: 550;
 }
 
+.footer {
+    color: rgba(255, 255, 255, 0.289);
+    font-size: .7rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+}
+
 @media(max-width: 1200px) {
     .main-box {
         width: 50%;
@@ -134,12 +144,12 @@ body {
 
 @media(max-width: 768px) {
     .main-box {
-        width: 80%;
+        width: 75%;
     }
 }
 
 @media(max-width: 576px) {
     .main-box {
-        width: 95%;
+        width: 85%;
     }
 }
