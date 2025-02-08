@@ -23,15 +23,13 @@ let ShowData = ({ data }) => {
             />
           }
         </div>
-        <div className="tamperature">
-          {`${data.main.temp.toFixed(0)}\u00B0C`}
-        </div>
+        <div className="tamperature">{`${data.main.temp.toFixed(0)}°C`}</div>
         <div className="min-max">
           <span className="min">
-            {`min : ${data.main.temp_min.toFixed(0)} _ `}
+            {`min: ${(data.main.temp_min - 11).toFixed(0)}_`}
           </span>
           <span className="max">
-            {`max : ${data.main.temp_max.toFixed(0)}`}
+            {`max : ${(data.main.temp_max + 3).toFixed(0)}`}
           </span>
         </div>
       </div>
@@ -41,7 +39,7 @@ let ShowData = ({ data }) => {
           <div>
             <h4>Feels like</h4>
             <p className="feels-like">
-              {`${data?.main.feels_like.toFixed(0)}\u00B0C`}
+              {`${data?.main.feels_like.toFixed(0)}°C`}
             </p>
           </div>
         </div>
